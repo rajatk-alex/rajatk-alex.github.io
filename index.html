@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title>moviespro.com</title>
+	<link rel="stylesheet" href="style.css">
+	 <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+	<header>
+		<div class="main">
+			          <canvas id="myCanvas" width="240" height="100"
+                       style="border:1px solid black; margin-top: 11px; margin-left:-11%; ">
+                        <img src="logo.png" id="logo">
+                          Your browser does not support the HTML5 canvas tag.
+                          </canvas>
+					<ul>
+	                    <li class="active"><a href="index.html">Home</a></li>
+                        <li><a href="browse.html">Browse</a></li>
+                        <li><a href="aboutus.html">About us</a></li>
+                        <li><a href="register.html">Register</a></li>
+                    </ul>
+		   </div>
+
+          <div class="welcome-text">
+    	  <h1>Welcome to the MoviesPro.com</h1>
+    	  <p>here you can buy,all kind of movies prop which had been used in the movies with an authentication certificate.</p>
+    	  <p>So,Hurry Up!!! Grab your real prop.</p>
+        </div>
+ 
+</header>
+              
+
+          <div class="pheading"><h2>Upcoming Products</h2></div>
+          <div class="line2"></div>
+              
+         <div class="galleryContainer">
+    <div class="slideShowContainer">
+        <div id="playPause" onclick="playPauseSlides()"></div>
+        <div onclick="plusSlides(-1)" class="nextPrevBtn leftArrow"><span class="arrow arrowLeft"></span></div>
+        <div onclick="plusSlides(1)" class="nextPrevBtn rightArrow"><span class="arrow arrowRight"></span></div>
+        <div class="captionTextHolder"><p class="captionText slideTextFromTop"></p></div>
+        <div class="imageHolder">
+            <img src="images/img_1.jpg" alt="Bat-Mobile">1366X768
+            <p class="captionText"><strong>Batman's Bat-Mobile</strong></p>
+        </div>
+        <div class="imageHolder">
+            <img src="images/img_2.jpg" alt="Strom Breaker">
+            <p class="captionText"><strong>Thor's Strom Breaker</strong></p>
+        </div>
+        <div class="imageHolder">
+            <img src="images/img_3.jpg" alt="Power Gauntlet">
+            <p class="captionText"><strong>Ironman's Power Gauntlet</strong></p>
+        </div>
+        <div class="imageHolder">
+            <img src="images/img_4.jpg" alt="Trident">
+            <p class="captionText"><strong>Aquaman's Trident</strong></p>
+        </div>
+    </div>
+    <div id="dotsContainer"></div>
+</div>
+
+<script>
+window.onload = function() {
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    var img = document.getElementById("logo");
+   ctx.drawImage(img, 10, -50);
+};
+</script>
+
+<script>
+    
+var slideIndex,slides,dots,captionText;
+function initGallery(){
+    slideIndex = 0;
+    slides=document.getElementsByClassName("imageHolder");
+    slides[slideIndex].style.opacity=1;
+
+    captionText=document.querySelector(".captionTextHolder .captionText");
+    captionText.innerText=slides[slideIndex].querySelector(".captionText").innerText;
+
+    //disable nextPrevBtn if slide count is one
+    if(slides.length<2){
+        var nextPrevBtns=document.querySelector(".leftArrow,.rightArrow");
+        nextPrevBtns.style.display="none";
+        for (i = 0; i < nextPrevBtn.length; i++) {
+            nextPrevBtn[i].style.display="none";
+        }
+    }
+
+    //add dots
+    dots=[];
+    var dotsContainer=document.getElementById("dotsContainer"),i;
+    for (i = 0; i < slides.length; i++) {
+        var dot=document.createElement("span");
+        dot.classList.add("dots");
+        dotsContainer.append(dot);
+        dot.setAttribute("onclick","moveSlide("+i+")");
+        dots.push(dot);
+    }
+    dots[slideIndex].classList.add("active");
+}
+initGallery();
+function plusSlides(n) {
+    moveSlide(slideIndex+n);
+}
+function moveSlide(n){
+    var i;
+    var current,next;
+    var moveSlideAnimClass={
+          forCurrent:"",
+          forNext:""
+    };
+    var slideTextAnimClass;
+    if(n>slideIndex) {
+        if(n >= slides.length){n=0;}
+        moveSlideAnimClass.forCurrent="moveLeftCurrentSlide";
+        moveSlideAnimClass.forNext="moveLeftNextSlide";
+        slideTextAnimClass="slideTextFromTop";
+    }else if(n<slideIndex){
+        if(n<0){n=slides.length-1;}
+        moveSlideAnimClass.forCurrent="moveRightCurrentSlide";
+        moveSlideAnimClass.forNext="moveRightPrevSlide";
+        slideTextAnimClass="slideTextFromBottom";
+    }
+
+    if(n!=slideIndex){
+        next = slides[n];
+        current=slides[slideIndex];
+        for (i = 0; i < slides.length; i++) {
+            slides[i].className = "imageHolder";
+            slides[i].style.opacity=0;
+            dots[i].classList.remove("active");
+        }
+        current.classList.add(moveSlideAnimClass.forCurrent);
+        next.classList.add(moveSlideAnimClass.forNext);
+        dots[n].classList.add("active");
+        slideIndex=n;
+        captionText.style.display="none";
+        captionText.className="captionText "+slideTextAnimClass;
+        captionText.innerText=slides[n].querySelector(".captionText").innerText;
+        captionText.style.display="block";
+    }
+
+}
+var timer=null;
+function setTimer(){
+    timer=setInterval(function () {
+        plusSlides(1) ;
+    },3000);
+}
+setTimer();
+function playPauseSlides() {
+    var playPauseBtn=document.getElementById("playPause");
+    if(timer==null){
+        setTimer();
+        playPauseBtn.style.backgroundPositionY="0px"
+    }else{
+        clearInterval(timer);
+        timer=null;
+        playPauseBtn.style.backgroundPositionY="-33px"
+    }
+}
+    
+</script>
+
+
+
+<footer>
+<div class="footer">
+    <div class="copyright-text">
+        Disclaimer:All images which are shown on this website, are the property of the respective companies and copyright holders. If we infringe on anyones copyright, please email us and we will remove them immediately.
+
+        <p class="copyright">
+            <strong>Contact Us:</strong><br>
+            📞 +919439070746<br>
+            📧 rajatkumar.41@gmail.com
+        </p>
+    </div>
+
+    © Copyright 2008-2020 | All Rights Reserved By Rajat A.K.A ALEX
+
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<title>Register</title>
+	<link rel="stylesheet" href="style.css">
+	 <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+<body>
+	<header>
+		<div class="main">
+			          <canvas id="myCanvas" width="240" height="100"
+                       style="border:1px solid black; margin-top: 11px; margin-left:-11%; ">
+                        <img src="logo.png" id="logo">
+                          Your browser does not support the HTML5 canvas tag.
+                          </canvas>
+					<ul>
+	                    <li><a href="index.html">Home</a></li>
+                        <li><a href="browse.html">Browse</a></li>
+                        <li><a href="aboutus.html">About us</a></li>
+                        <li class="active"><a href="register.html">Register</a></li>
+                    </ul>
+		   </div>
+		   <div class="form">
+		   	<form action="connect.php" method="post">
+		   		<h1>Register Here</h1>
+		   		<input type="text" placeholder="enter your first-name" id="first" name="firstname">
+		   		<input type="text" placeholder=" enter your last-name" id="last" name="lastname">
+		   		<input type="email" placeholder="enter your email" id="email" name="email">
+		   		<input type="password" id="password" placeholder="enter your password"  minlength="8" name="password" >
+		   		<input type="number" placeholder="enter your number" id="number" name="number" maxlength="10"><br>
+		   		DOB:<input type="date" placeholder="enter your date of birth" id="dob" name="dob"><br>
+
+		   		<label class="item-input">
+                    <span class="input-label">Gender:</span>
+                    <input name="gender" type="radio" id="male" value="male" style="margin-top: 4px; margin-left: 4px; margin-right: 4px;" />
+                    <span class="male" style="margin-top: 1px">Male</span>
+                    <input name="gender" type="radio" id="female" value="female" style="margin-top: 4px; margin-left: 4px; margin-right: 4px;" />
+                    <span class="female" style="margin-top: 1px">Female</span>
+            </label><br>
+                <input type="text" placeholder="enter your interest" id="inter" maxlength="150" name="interest">
+
+            <button class="button" value="submit" onclick="myfun()">Register</button>
+
+            <script>
+            	function myfun(){
+            		var x1=document.getElementById('first').value;
+            		var x1=document.getElementById('last').value;
+            		var x1=document.getElementById('email').value;
+            		var x1=document.getElementById('number').value;
+            		var x1=document.getElementById('dob').value;
+            		var x1=document.getElementById('male').value;
+            		var x1=document.getElementById('female').value;
+
+            		alert("sucessfully Registered");
+
+            	}
+            </script>
+
+		   	</form>
+		   </div>
+
+ 
+</header>
+<script>
+window.onload = function() {
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    var img = document.getElementById("logo");
+   ctx.drawImage(img, 10, -50);
+};
+</script>
+
+<footer>
+<div class="footer">
+	<div class="copyright-text">
+		Disclaimer:All images which are shown on this website, are the property of the respective companies and copyright holders. If we infringe on anyones copyright, please email us and we will remove them immediately.
+
+		<p class="copyright">
+			<strong>Contact Us:</strong><br>
+		    📞 +919439070746<br>
+		    📧 rajatkumar.41@gmail.com
+	    </p>
+	</div>
+
+	© Copyright 2008-2020 | All Rights Reserved By Rajat A.K.A ALEX
+
+</div>
+</footer>
+</body>
+</html>
